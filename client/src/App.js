@@ -10,10 +10,16 @@ function App() {
   //     .then((data) => setCount(data.count));
   // }, []);
 
+    function handleClick(){
+      fetch('/cookie_click')
+      .then(r=>r.json())
+      .then(console.log)
+    }
+
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+    // <h1 className="text-3xl font-bold underline">
+    //   Hello world!
+    // </h1>
     // <BrowserRouter>
     //   <div className="App">
     //     <Switch>
@@ -26,6 +32,7 @@ function App() {
     //     </Switch>
     //   </div>
     // </BrowserRouter>
+    <button onClick={handleClick}>click</button>
   );
 }
 
