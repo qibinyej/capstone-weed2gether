@@ -3,6 +3,7 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom"
 import Login from './components/Login'
 import NavBar from './components/NavBar';
+import Signup from "./components/Signup";
 
 function App() {
   // const [count, setCount] = useState(0);
@@ -22,7 +23,8 @@ function App() {
   return (
     <>
       {/* <NavBar /> */}
-      <Login />
+      {/* <Login /> */}
+      <Signup />
 
     {/*  <BrowserRouter>
        <div className="App">

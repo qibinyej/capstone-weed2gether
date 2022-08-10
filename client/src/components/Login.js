@@ -62,7 +62,12 @@ function Login() {
 
               <div className="text-sm">
                 <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-                  Forgot your password?
+                  {"Forgot your password?"/** reset password */}
+                </a>
+              </div>
+              <div className="text-sm">
+                <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
+                  {"Create an account" /** create user account */}
                 </a>
               </div>
             </div>
