@@ -10,7 +10,7 @@ function Login() {
             <img
               className="mx-auto h-21 w-auto"
               src="/marijuana+weed+icon256.png"
-              alt="Workflow"
+              alt="login-icon"
             />
             <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign in to your account</h2>
           </div>
