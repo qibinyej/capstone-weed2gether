@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show update destroy ]
+  
 
   # GET /users
   def index
@@ -16,13 +17,19 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
-   user = User.create(user_params)
-   if user.valid?
-    session[:user_id] = user.id
-    render json: user, status: :ok
-   else
-      render json: { errors: user.errors.full_messages}, status: :unprocessable_entity
-    end
+  #  user = User.create(user_params)
+  #  if user.valid?
+  #   session[:user_id] = user.id
+  #   render json: user, status: :ok
+
+    if user = User.authenticate(params[:username], params[:password])
+      # Save the user ID in the session so it can be used in
+      # subsequent requests
+      session[:current_user_id] = user.id
+      redirect_to root_url
+    else
+        render json: { errors: user.errors.full_messages}, status: :unprocessable_entity
+      end
   end
 
   # PATCH/PUT /users/1
@@ -34,10 +41,17 @@ class UsersController < ApplicationController
   #   end
   # end
 
-  # # DELETE /users/1
-  # def destroy
-  #   @user.destroy
-  # end
+  # DELETE /users/1
+  def destroy
+    # @user.destroy
+
+      # Remove the user id from the session
+      session.delete(:current_user_id)
+      # Clear the memoized current user
+      @_current_user = nil
+      redirect_to root_url, notice: "You have successfully logged out."
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -47,6 +61,6 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.permit(:username, :password)
+      params.permit(:username, :password, :password_confirmation)
     end
 end

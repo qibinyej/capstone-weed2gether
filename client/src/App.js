@@ -1,5 +1,7 @@
-import { useState, useEffect } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+// import { useState, useEffect } from "react"
+
+import { BrowserRouter, Switch, Route } from "react-router-dom"
+import Login from './components/Login'
 
 function App() {
   // const [count, setCount] = useState(0);
@@ -10,29 +12,29 @@ function App() {
   //     .then((data) => setCount(data.count));
   // }, []);
 
-    function handleClick(){
-      fetch('/cookie_click')
-      .then(r=>r.json())
-      .then(console.log)
-    }
+    // function handleClick(){
+    //   fetch('/cookie_click')
+    //   .then(r=>r.json())
+    //   .then(console.log)
+    // }
 
   return (
-    // <h1 className="text-3xl font-bold underline">
-    //   Hello world!
-    // </h1>
+    
+    <Login/>
+    
     // <BrowserRouter>
     //   <div className="App">
     //     <Switch>
-    //       <Route path="/testing">
-    //         <h1>Test Route</h1>
+    //       <Route path="/Login">
+    //         <Login />
     //       </Route>
     //       <Route path="/">
-    //         <h1>Page Count: {count}</h1>
+           
     //       </Route>
     //     </Switch>
     //   </div>
     // </BrowserRouter>
-    <button onClick={handleClick}>click</button>
+   
   );
 }
 
