@@ -1,9 +1,11 @@
-import { LockClosedIcon } from '@heroicons/react/solid'
+import { LockClosedIcon } from '@heroicons/react/solid';
+import Signup from "./Signup";
 
 
 function Login() {
   return (
     <>
+
       <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8">
           <div>
@@ -65,11 +67,6 @@ function Login() {
                   {"Forgot your password?"/** reset password */}
                 </a>
               </div>
-              <div className="text-sm">
-                <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-                  {"Create an account" /** create user account */}
-                </a>
-              </div>
             </div>
 
             <div>
@@ -80,12 +77,19 @@ function Login() {
                 <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                   <LockClosedIcon className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />
                 </span>
-                Sign in
+                Log in
               </button>
             </div>
+            <div className="flex items-center text-sm">
+                <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
+                  {"Create an account" /** create user account */}
+                </a>
+              </div>
           </form>
         </div>
       </div>
+      {/* add router */}
+      <Signup />
     </>
   )
 }

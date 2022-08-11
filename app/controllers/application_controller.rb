@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::API
     include ActionController::Cookies
     rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
-    rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
+    rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessible_entity
     # before_action :require_login
 
 
@@ -16,9 +16,14 @@ class ApplicationController < ActionController::API
         User.find_by(id: session[:current_user_id])
     end
 
-    # def record_not_found
-    #   render :errors.full_messages, status:
-    # end
+    def record_not_found(error)
+      render json: { errors: errors.full_messages }, status: :not_found
+      
+    end
+
+    def render_unprocessible_entity(exception)
+      render json: {error: exception.errors.full_messages }, status: :unprocessable_entity
+    end
 end
 
 

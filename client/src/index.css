@@ -1,9 +1,73 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
 }
+
+.bg-img {
+  height: 100%;
+  min-width: 100%;
+  position:absolute;
+  opacity: 30%;
+}
+
+.section-text {
+  font-size: 70px;
+  font-weight: 200;
+  margin:0;
+  margin-top: 250px;
+  margin-left: 350px;
+  margin-right: 150px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+/* .section-text a:hover {
+  background-color: #ddd;
+  color:blue;
+} */
+
+.navbar-links{
+  width: 100%;
+  background:grey;
+  overflow: auto;
+}
+
+.navbar-links li {
+  float: left;
+  color: greenyellow;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 23px;
+}
+
+.navbar-links li.split{
+  float: right;
+  background-color: green;
+  color: white;
+}
+
+.navbar-links li:hover{
+  background-color: #ddd;
+  color:blue;
+}
+
+/* not working */
+/* @media screen and (max-width: 500px) {
+  .navbar-links a {
+    float: none;
+    display: block;
+  }
+} */
+
+/* not working */
+/* .navbar-links ul.active{
+  background-color: blueviolet;
+  color: white;
+} */

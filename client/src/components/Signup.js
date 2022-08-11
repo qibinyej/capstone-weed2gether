@@ -1,19 +1,53 @@
 import { LockClosedIcon } from '@heroicons/react/solid'
+import {useState} from 'react'
 
 function Signup() {
+
+  const [formData, setFormData] = useState({
+    username: '',
+    password:'',
+  })
+  const [errors, setErrors] = useState([])
+  // const history = useHistory()
+
+  const {username, password} = formData
+
+  function onSubmit(e){
+    e.preventDefault()
+    const user = {
+      username, 
+      password
+    }
+
+    fetch('./users', {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(user)
+    })
+    .then(r => {
+      if(r.ok) {
+        r.json().then(user=> {
+          // history.pushState(`/users/${user.id}`)
+        })
+      }else{
+        r.json().then(json=> setErrors(Object.entries(json.errors)))
+      }
+    })
+  }
+
   return (
     <>
     <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
     <div className="max-w-md w-full space-y-8">
       <div>
-        <img
+        {/* <img
           className="mx-auto h-21 w-auto"
           src="/marijuana+weed+icon256.png"
           alt="login-icon"
-        />
+        /> */}
         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Create an account</h2>
       </div>
-      <form onSubmit={console.log('Submitted!')}className="mt-8 space-y-6" action="#" method="POST">
+      <form onSubmit={onSubmit} className="mt-8 space-y-6" action="#" method="POST">
         <input type="hidden" name="remember" defaultValue="true" />
         <div className="rounded-md shadow-sm -space-y-px">
           <div>

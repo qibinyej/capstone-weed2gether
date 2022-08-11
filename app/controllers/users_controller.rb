@@ -12,24 +12,23 @@ class UsersController < ApplicationController
   # GET /users/1
   def show
     user =User.find_by(id: session[:user_id])
-    render json: @user, serializer: UserAllpostsSerializer
+    render json: user, serializer: UserAllpostsSerializer
   end
 
   # POST /users
   def create
-  #  user = User.create(user_params)
-  #  if user.valid?
-  #   session[:user_id] = user.id
-  #   render json: user, status: :ok
+   user = User.create(user_params)
+   if user.valid?
+    session[:user_id] = user.id # remembering who our user
+    render json: user, status: :ok
 
-    if user = User.authenticate(params[:username], params[:password])
-      # Save the user ID in the session so it can be used in
-      # subsequent requests
-      session[:current_user_id] = user.id
-      redirect_to root_url
+    # if user = User.authenticate(params[:username], params[:password])
+    #   # Save the user ID in the session so it can be used in
+    #   # subsequent requests
+    #   session[:current_user_id] = user.id
+    #   redirect_to root_url
     else
         render json: { errors: user.errors.full_messages}, status: :unprocessable_entity
-      end
   end
 
   # PATCH/PUT /users/1
@@ -61,6 +60,6 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.permit(:username, :password, :password_confirmation)
+      params.permit(:username, :password)
     end
 end
