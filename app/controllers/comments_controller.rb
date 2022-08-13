@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  skip_before_action :authenticate_user, only: [:create] #sign up to post comments
   before_action :set_comment, only: %i[ show update destroy ]
 
   # GET /comments

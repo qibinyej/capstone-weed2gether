@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show update destroy ]
+  skip_before_action :authenticate_user, only: [:create] 
+  #skip auths after create
+  before_action :set_user, only: %i[ show update destroy ] 
   
 
   # GET /users
@@ -11,7 +13,7 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
-    user =User.find_by(id: session[:user_id])
+    user =User.find_by_id(session[:user_id])
     render json: user, serializer: UserAllpostsSerializer
   end
 

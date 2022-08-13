@@ -2,26 +2,37 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 function NavBar() {
+
+    const logout = ()=>{
+        fetch('/logout',{
+            
+        })
+    }
     return (
         <div className='navbar-links'>
             <ul className="active">
                 <li>
                     <img className="mx-auto h-8 w-auto" src='/marijuana+weed+icon128.png' alt='navbar-icon' />
                 </li>
-                <li>
-                    <a>weed2gether</a>
+                <li id='weed2'>weed2gether
                 </li>
                 <li>
-                    <a><Link to='/about'>About</Link></a>
+                    <Link to='/about'>About</Link>
                 </li>
                 <li>
-                   <a><Link to='/posts'>Posts</Link></a>
+                   <Link to='/posts'>Posts</Link>
                 </li>
                 <li className='split'>
-                   <a ><Link to='/login'>Login/Signup</Link></a>
+                   <Link to='/login'>Login</Link>
+                </li>
+                <li className='split'>
+                   <Link to='/signup'>Signup</Link>
                 </li>
                 <li>
-                    <a><Link to='/Resources'>Resources</Link></a>
+                    <Link to='/Resources'>Resources</Link>
+                </li>
+                <li>
+                    <Link to='/MyPage'>My Page</Link>
                 </li>
             </ul>
         </div>

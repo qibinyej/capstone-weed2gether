@@ -1,36 +1,57 @@
 import { LockClosedIcon } from '@heroicons/react/solid';
-import Signup from "./Signup";
+import { useState} from 'react';
 
+function Login({updateUser}) {
 
-function Login() {
+  const [username, setUsername] = useState({})
+  const [password, setPassword] = useState({})
+
+  
+
+  const handleLogin = (e)=>{
+    e.preventDefault()
+    console.log(username, password)
+    fetch('/login', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        username,
+        password
+      })
+    })
+    .then(r=>r.json())
+    .then(data=> console.log(data))
+  }
+
   return (
     <>
 
       <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8">
           <div>
-            <img
+            {/* <img
               className="mx-auto h-21 w-auto"
               src="/marijuana+weed+icon256.png"
               alt="login-icon"
-            />
-            <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign in to your account</h2>
+            /> */}
+            {/* <h2 className="mt-6 text-center text-3xl font-extrabold text-green-500">weed2gether</h2> */}
           </div>
-          <form className="mt-8 space-y-6" action="#" method="POST">
+          <form onSubmit={handleLogin} className="mt-8 space-y-6" action="#" method="POST">
             <input type="hidden" name="remember" defaultValue="true" />
             <div className="rounded-md shadow-sm -space-y-px">
               <div>
-                <label htmlFor="email-address" className="sr-only">
-                  Email address
+                <label htmlFor="username" className="sr-only">
+                  username
                 </label>
-                <input
-                  id="email-address"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
+                <input 
+                  onChange={(e)=>setUsername(e.target.value)}
+                  id="login-username"
+                  name="username"
+                  type="username"
+                  autoComplete="username"
                   required
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                  placeholder="Email address"
+                  placeholder="Username"
                 />
               </div>
               <div>
@@ -38,7 +59,8 @@ function Login() {
                   Password
                 </label>
                 <input
-                  id="password"
+                  onChange={(e)=>setPassword(e.target.value)}
+                  id="login-password"
                   name="password"
                   type="password"
                   autoComplete="current-password"
@@ -64,7 +86,7 @@ function Login() {
 
               <div className="text-sm">
                 <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-                  {"Forgot your password?"/** reset password */}
+                  {"Forgot your password?"}
                 </a>
               </div>
             </div>
@@ -80,16 +102,14 @@ function Login() {
                 Log in
               </button>
             </div>
-            <div className="flex items-center text-sm">
+            {/* <div className="flex items-center text-sm">
                 <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-                  {"Create an account" /** create user account */}
+                  {"Create an account"}
                 </a>
-              </div>
+              </div> */}
           </form>
         </div>
       </div>
-      {/* add router */}
-      <Signup />
     </>
   )
 }
