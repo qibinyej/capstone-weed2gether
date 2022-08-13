@@ -26,7 +26,7 @@ function Comments() {
             type='text' 
             placeholder="enter comment..." />
         </label>
-        <button id='send-icon'type="submit"><img src='./send-icon.png'/></button>
+        <button id='send-icon' type="submit"><img src='./send-icon.png'/></button>
     </form>
   )
 }

@@ -25,10 +25,10 @@ body {
   justify-content: center;
   align-items: center;
 }
-/* .section-text a:hover {
+.section-text a:hover {
   background-color: #ddd;
   color:blue;
-} */
+}
 
 .navbar-links{
   width: 100%;
@@ -44,11 +44,11 @@ body {
   text-decoration: none;
   font-size: 23px;
 }
-/* #weed2 {
+#weed2 {
   font-size: 25px;
   color:greenyellow;
   font-weight: 400;
-} */
+}
 
 .navbar-links li.split{
   float: right;

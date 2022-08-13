@@ -3,11 +3,21 @@ import { Link } from 'react-router-dom'
 
 function NavBar() {
 
-    const logout = ()=>{
-        fetch('/logout',{
-            
-        })
-    }
+    // const handleLogout = (user)=> {
+    //     fetch(`/logout/${user.id}`,{
+    //       method: 'DELETE',
+    //       headers:{ 'Content-Type': 'application/json'},
+    //       })
+    //       .then(res => {
+    //         if (res.ok) { console.log("Logged out!") }
+    //         else { console.log("cannot log out...s") }
+    //         return res
+    //     })
+    //     .then(res => res.json())
+    //     .then(data => console.log(data))
+    //     .catch(error => console.log(error))
+    //   }
+
     return (
         <div className='navbar-links'>
             <ul className="active">
