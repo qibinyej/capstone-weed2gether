@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Login from './components/Login';
+import Logout from "./components/Logout";
 import Signup from "./components/Signup";
 import NavBar from './components/NavBar';
 import About from './components/About';
@@ -8,15 +9,15 @@ import Posts from './components/Posts';
 import Resources from './components/Resources';
 import BgAnimate from "./components/BgAnimate";
 import MyPage from "./components/MyPage";
-
+import PostCard from './components/PostCard';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(false)
-  // console.log(currentUser)
   const [postData, setPostData] = useState([])
-  // console.log('state', postData)
+  // const [errors, setErrors] = useState([])
+  const [deletePost, setDeletePost] = useState([])
+  
 
-  // render existing posts
   useEffect(() => {
     fetchPosts()
   }, [])
@@ -26,11 +27,23 @@ function App() {
     .then(r=>r.json())
     .then(data=> setPostData(data))
   }
+
+  const removePost = (id) => {
+    fetch(`/posts/${id}`,{
+      method: 'DELETE',
+      headers: {
+        'Content-type': 'application/json'
+    }
+    })
+    .then(r=>r.json())
+    .then(handleDeletePost)
+  }
+  const handleDeletePost = (id) => setDeletePost((current)=> current.filter(p => p.id !== id))
+
+  // not sure what's for...
   const updateUser = () => {
     setCurrentUser(currentUser)
   }
-
-// console.log( 'current', currentUser)
   return (
     <>
       <BrowserRouter>
@@ -38,16 +51,19 @@ function App() {
         
           <Switch>
             {/* <Route path='/'>
-              <BgAnimate />
+            <BgAnimate />
             </Route> */}
+            <Route path='/logout'>
+              <Logout />
+            </Route>
             <Route path="/login">
-              <Login updateUser={updateUser}/>
+              <Login />
             </Route>
             <Route path="/signup">
-              <Signup updateUser={updateUser}/>
+              <Signup />
             </Route>
             <Route path="/Posts">
-              <Posts postData={postData}/>
+              <Posts postData={postData} removePost={removePost}/>
             </Route>
             <Route path="/About">
               <About />

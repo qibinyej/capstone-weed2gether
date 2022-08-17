@@ -32,13 +32,15 @@ body {
 
 .navbar-links{
   width: 100%;
-  background:grey;
+  padding:0;
+  background:white;
   overflow: auto;
+
 }
 
 .navbar-links li {
   float: left;
-  color: greenyellow;
+  color: rgb(41, 53, 25);
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -46,8 +48,8 @@ body {
 }
 #weed2 {
   font-size: 25px;
-  color:greenyellow;
-  font-weight: 400;
+  color:black;
+  /* font-weight: 100; */
 }
 
 .navbar-links li.split{
@@ -66,8 +68,22 @@ body {
 
 }
 
-#send-icon{
+/* #send-icon{
   width: 55px;
+} */
+
+.reviews-form {
+  padding: 5px;
+  width: 50vw;
+  border-radius: 20px;
+}
+
+.form-container {
+  padding: 10px;
+  background: #907d7d;
+  width: 60%;
+  border-radius: 20px;
+  margin: auto;
 }
 /* not working */
 /* @media screen and (max-width: 500px) {

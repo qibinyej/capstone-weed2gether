@@ -2,6 +2,9 @@ class PostsController < ApplicationController
   # skip_before_Action :authenticate_user, only: [:create] #sign up to create posts
   before_action :set_post, only: %i[ show update destroy ]
 
+  def welcome
+    render json: {message: "Welcome to weed2gether"}
+  end
   # GET /posts
   def index
     @posts = Post.all

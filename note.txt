@@ -1,0 +1,87 @@
+# welcome route:
+in routes.rb:
+
+    get'/welcome/, to: production
+
+in ProductionController:
+
+    def welcome
+        render json: {message: "Welcome to ...}
+    end
+
+
+# create a dynamic route looking like /welcome/1 and print the id from the params, we are goign to call welcome_show
+
+    get '/welcome/:id", to: 'productions#welcome_show'
+
+in Controller: 
+
+    def welcome_show
+        puts params[:id]
+    end
+
+
+# return some data where productions are still ongoing. 
+
+    def ongoing_productions
+        production = Production.where(ongoing:true)
+        render json: productions, status: :ok
+    endb 
+
+    get '/ongoing_productions', to 'productions#ongoing_productions', as: :ongoing #shorten url
+
+
+# to create a customized route and Controller
+
+    resource :productions, only [:create], controller: 'operas'
+
+OperasController 
+
+    def method
+        code 
+    end
+
+
+#update
+def update
+    production = Production.find(params[:id])
+    production.update(production_params)
+    render json: production, status: :ok
+rescue ActiveRecord::RecordNotFound => error
+    render json: {message: error.message}
+end 
+
+# error message in Application Controller
+    rescue_from ActiveRecord::RecordInvalid, with::render_unprocessable_entity
+    rescue_from AvitveRecord::RecordNotFound, with::invalid_record
+
+    private 
+
+        def render_unprocessable_entity(invalid)
+            render json: { errors: invalid.record.errors.full_messages },
+            status::render_unprocessable_entity
+        end
+
+        def invalid_record(error)
+            render json: { message: error.message }, status: :not_found
+        end
+
+        # then clean the error code in other controllers
+
+        # render full error message in an array
+    production.errors.full_messages
+
+# to clean repeated method
+
+    before_action :find_production, only: [...]
+
+    private
+        def find_production
+            Production.find(params[:id])
+    end
+
+# methods trigger validations
+    .create, .create!, .save, .update!, .save!, .valid?
+
+# errors.method.sort
+    list sorted error methods

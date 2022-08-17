@@ -1,33 +1,41 @@
-import {React, useState} from 'react'
+import { React, useState } from 'react'
+import CommentCard from './CommentCard'
 
 function Comments() {
 
   const [comment, setComment] = useState('')
-  
+
   const handleComment = (e) => {
+    console.log(comment)
     e.preventDefault()
     fetch('/comments', {
       method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body:JSON.stringify({
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
         comment
       })
     })
-    .then(r=>r.json())
-    .then(data=>console.log("commented!")) 
+      .then(r => r.json())
+      .then(data => console.log("commented!"))
   }
 
 
   return (
-    <form onSubmit={handleComment}>
-        <label htmlFor="post_title" className="block text-sm font-medium text-gray-700">
-          <textarea 
-            onChange={(e)=>setComment(e.target.value)} 
-            type='text' 
-            placeholder="enter comment..." />
-        </label>
-        <button id='send-icon' type="submit"><img src='./send-icon.png'/></button>
-    </form>
+    <div>
+      <CommentCard comment={comment}/>
+    <div className='form-container'>
+      <form onSubmit={handleComment}>
+        <label htmlFor="post_title" className="block text-sm font-medium text-gray-500">
+          <input
+            className='reviews-form'
+            onChange={(e) => setComment(e.target.value)}
+            type='text'
+            value={comment}
+            placeholder="enter comment..." /><button type="submit" >send</button>
+        </label> 
+      </form>
+    </div>
+  </div>
   )
 }
 

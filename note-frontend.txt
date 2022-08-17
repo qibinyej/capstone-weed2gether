@@ -1,0 +1,47 @@
+# to create frontend error message
+    const [errors, setErrors] = useState([])    #full_messages returns in an array
+
+in fetch:
+   .then(data=> setErrors(data.error))
+
+    if(errors) return <h1>{errors}</h1>
+
+# to render error messages in a string from an array
+    1. render the error array
+    Object.entries(data.errors)
+    2. map over the error array and reutnr a string
+    Object.entries(data.errors).map(e=> `${e[0]}, ${e[1]})
+
+    1. data.errors
+    
+    1. data.errors.map(e=>`{$error}`)
+
+# to create error div
+<div className='App'>
+    {errors? errors.map(e => <div key={e.id}>{e}</div>) : null}
+</div>
+
+# chain addPosts function to handleSubmit
+
+    const [posts, setPosts] = useState([])
+    const addPosts = (p) => setPosts( (current)=> [...current, p])
+
+# update posts
+    const updatePost = (updatedP) => setPosts((current)=>{
+        return current.map(p => {
+            if(p.id === updatedP.id){
+                return UpdatedP
+            } else {
+                return p
+            }
+        })
+    })
+
+# delete posts
+    const deletePost = (id) => setPosts((current) => current.filter(p=>p.id !== id))
+
+#counter persists 
+    useEffect
+    window.localStorage
+    getItem(keyname, value) //localStorage methods
+    setItem(keyname, value)
