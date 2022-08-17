@@ -4,7 +4,7 @@
 
 body {
   margin: 0;
-  font-family: 'Noto Sans Display', sans-serif;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .bg-img {
@@ -74,17 +74,18 @@ body {
 
 .reviews-form {
   padding: 5px;
-  width: 50vw;
+  width: 80vw;
+  height: 40px;
   border-radius: 20px;
 }
 
-.form-container {
-  padding: 10px;
-  background: #907d7d;
-  width: 60%;
+/* .form-container {
+  padding: 5px;
+  background: lightgrey;
+  width: 80%;
   border-radius: 20px;
   margin: auto;
-}
+} */
 /* not working */
 /* @media screen and (max-width: 500px) {
   .navbar-links a {
