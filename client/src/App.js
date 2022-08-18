@@ -10,23 +10,41 @@ import Resources from './components/Resources';
 import BgAnimate from "./components/BgAnimate";
 import MyPage from "./components/MyPage";
 import PostCard from './components/PostCard';
+import CommentCard from "./components/CommentCard";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(false)
   const [postData, setPostData] = useState([])
+  const [comments, setComments] = useState([]);
   // const [errors, setErrors] = useState([])
   const [deletePost, setDeletePost] = useState([])
   
 
   useEffect(() => {
     fetchPosts()
+   
   }, [])
 
   const fetchPosts = () => {
     fetch('/posts')
     .then(r=>r.json())
-    .then(data=> setPostData(data))
+    .then(data=>setPostData(data))
   }
+
+
+  const commentLists = postData.map(
+      item => { return item.comments
+      }
+    )
+
+ const eachComment  = commentLists.map(
+      item => {
+       return <CommentCard key={item.id} commentCard={item} />
+      }
+    )
+
+
+
 
   const removePost = (id) => {
     fetch(`/posts/${id}`,{

@@ -1,14 +1,13 @@
 import PostCard from './PostCard'
 import Articles from './Articles'
-import { useState } from 'react'
-
+import CommentCard from './CommentCard'
 
 function Posts({ postData, removePost }) {
 
   const post = postData.map((post) => {
+    // console.log(post.comments)
     return <PostCard key={post.id} post={post} removePost={removePost}/>
   })
-
 
   return (
     <>
@@ -16,7 +15,6 @@ function Posts({ postData, removePost }) {
       <div>
       {post}
       </div>
-      
       {/* <Articles />
        */}
     </>

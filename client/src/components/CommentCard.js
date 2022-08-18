@@ -1,17 +1,12 @@
 import React from 'react'
 
 
-function CommentCard({}) {
+function CommentCard({postComment}) {
+
   return (
-    <>
-        <h1></h1>
-          <div className="reviews-body">
-              
-          </div>
-          {/* <div className="text-muted text-bold">
-              {timestamp || "3 mins ago"}
-          </div> */}
-    </>
+      <div>
+          <h4>{postComment.comment}</h4>
+      </div>
   )
 }
 

@@ -1,12 +1,18 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import CommentCard from "./CommentCard";
 import CommendForm from "./CommentForm";
 
 function Comments() {
   const [comments, setComments] = useState([]);
+// console.log(comments)
+  useEffect(()=> {
+    fetch('/comments')
+    .then(r=>r.json())
+    .then(setComments)
+  }, [])
 
-  const commentCards = comments.map((item) => {
-    return <CommentCard key={item.id} comment={item} />;
+  const comment = comments.map((item) => {
+    return <CommentCard key={item.id} commentCard={item} />;
   });
 
   const appendComment = (comment) => {
@@ -16,10 +22,10 @@ function Comments() {
   return (
     <>
       <section>
-        <CommendForm addComment={appendComment} />
+        <CommendForm appendComment={appendComment} />
         <hr />
-        Comments:
-        {commentCards}
+        <h1>Comments:</h1>
+        <p className="p-comment">{comment}</p>
       </section>
     </>
   );
