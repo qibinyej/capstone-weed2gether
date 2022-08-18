@@ -1,6 +1,4 @@
 import { React, useState, useEffect } from "react";
-import CommentCard from "./CommentCard";
-import CommendForm from "./CommentForm";
 
 function Comments() {
   const [comments, setComments] = useState([]);

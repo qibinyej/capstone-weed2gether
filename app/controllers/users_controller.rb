@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_user, only: [:create] 
   #skip auths after create
-  before_action :set_user, only: %i[ show update destroy ] 
+  before_action :set_user, only: %i[:show, :update, :destroy ] 
   
 
   # GET /users

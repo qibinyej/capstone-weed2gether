@@ -1,23 +1,24 @@
 import {React, useState} from 'react'
 
-
 function CommentForm({ appendComment }) {
 
-  const [comment, setComment] = useState("")
-  
-  const handleComment = (e) => setComment(e.target.value)
+  const [newComment, setNewComment] = useState("")
+  const handleComment = (e) => setNewComment(e.target.value)
   const addNewComment = (e) => {
     // console.log(newComment)
     e.preventDefault()
-    // const newComment = {
-    //   comment,
+    // const new = {
+    //   newComment,
+    //   user_id,
+    //   post_id
     // };
     fetch('/comments', {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          comment
-        })
+        body: JSON.stringify(
+          newComment,
+    
+        )
       })
     .then(r=>r.json())
     .then(appendComment)
@@ -25,13 +26,13 @@ function CommentForm({ appendComment }) {
 
   return (
     // <div className='form-container'>
-      <form action="http://localhost:4000/posts" method="post" onSubmit={addNewComment}>
+      <form action="http://localhost:4000/comments" method="post" onSubmit={addNewComment}>
         <label htmlFor="post_title" className="block text-sm font-sm text-gray-700">
           <textarea
             className='comment-form'
             onChange={handleComment}
             type='text'
-            value={comment}
+            value={newComment}
             placeholder="enter comment..." />
             <button className='comment-button' type="submit" >send</button>
         </label>

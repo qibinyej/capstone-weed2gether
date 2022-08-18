@@ -9,20 +9,15 @@ import Posts from './components/Posts';
 import Resources from './components/Resources';
 import BgAnimate from "./components/BgAnimate";
 import MyPage from "./components/MyPage";
-import PostCard from './components/PostCard';
-import CommentCard from "./components/CommentCard";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(false)
   const [postData, setPostData] = useState([])
-  const [comments, setComments] = useState([]);
-  // const [errors, setErrors] = useState([])
   const [deletePost, setDeletePost] = useState([])
-  
+  // const [errors, setErrors] = useState([])
 
   useEffect(() => {
     fetchPosts()
-   
   }, [])
 
   const fetchPosts = () => {
@@ -30,21 +25,6 @@ function App() {
     .then(r=>r.json())
     .then(data=>setPostData(data))
   }
-
-
-  const commentLists = postData.map(
-      item => { return item.comments
-      }
-    )
-
- const eachComment  = commentLists.map(
-      item => {
-       return <CommentCard key={item.id} commentCard={item} />
-      }
-    )
-
-
-
 
   const removePost = (id) => {
     fetch(`/posts/${id}`,{
@@ -58,15 +38,14 @@ function App() {
   }
   const handleDeletePost = (id) => setDeletePost((current)=> current.filter(p => p.id !== id))
 
-  // not sure what's for...
-  const updateUser = () => {
-    setCurrentUser(currentUser)
-  }
+  // // not sure what's for...
+  // const updateUser = () => {
+  //   setCurrentUser(currentUser)
+  // }
   return (
     <>
       <BrowserRouter>
         <NavBar />
-        
           <Switch>
             {/* <Route path='/'>
             <BgAnimate />
@@ -89,8 +68,8 @@ function App() {
             <Route path="/Resources">
               <Resources />
            </Route>
-           <Route path="/users/:id">
-              <MyPage updateUser={updateUser} />
+           <Route path="/MyPage">
+              <MyPage />
            </Route>
           </Switch> 
       </BrowserRouter>

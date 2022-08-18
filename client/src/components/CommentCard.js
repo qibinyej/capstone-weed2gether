@@ -5,7 +5,7 @@ function CommentCard({postComment}) {
 
   return (
       <div>
-          <h4>{postComment.comment}</h4>
+          <p>{postComment.comment}</p>
       </div>
   )
 }

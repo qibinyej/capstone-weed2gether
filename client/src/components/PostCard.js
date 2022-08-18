@@ -3,18 +3,25 @@ import CommentCard from "./CommentCard";
 import CommentForm from "./CommentForm";
 
 function PostCard({ post, removePost }) {
-  //upvote
-  const initialState = () =>
-    Number(window.localStorage.getItem("count")) || post.upvote;
+  
+  const initialState = () => Number(window.localStorage.getItem("count")) || post.upvote;
   const [count, setCount] = useState(initialState);
-
+  const [comments, setComments] = useState([]);
+  
   useEffect(() => {
     window.localStorage.setItem("count", count);
   }, [count]);
 
+  //rendering comments in resepct of posts
   const postComment = post.comments.map((comment) => {
     return <CommentCard key={comment.id} postComment={comment} />;
   });
+
+  //comment form
+    const appendComment = (comment) => {
+      console.log(comment)
+      setComments([...comments, comment])
+    }
 
   return (
     <div className="relative mx-auto px-4 box-content h-100% w-100% p-4 border-2 border-gray-200 bg-gray-100">
@@ -32,13 +39,13 @@ function PostCard({ post, removePost }) {
           </button>
         </div>
       </div> 
-      <button 
+      {/* <button 
       onClick={removePost}
-      className="relative bg-blue-300 hover:bg-blue-500 text-white font-bold py-1 px-3 rounded"
+      className="relative bg-gray-200 hover:bg-blue-500 text-black py-1 px-1 rounded"
       >
       delete
-      </button>
-      <CommentForm />
+      </button> */}
+      <CommentForm appendComment={appendComment}/>
     <hr />
       <div>Comments:
         {postComment}
