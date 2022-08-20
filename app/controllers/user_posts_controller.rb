@@ -1,6 +1,6 @@
 class UserPostsController < ApplicationController
   before_action :set_user_post, only: %i[ show update destroy ]
-
+  skip_before_action :authenticate_user
   # GET /user_posts
   def index
     @user_posts = UserPost.all

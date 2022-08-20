@@ -19,7 +19,6 @@ function PostCard({ post, removePost }) {
 
   //comment form
     const appendComment = (comment) => {
-      console.log(comment)
       setComments([...comments, comment])
     }
 
@@ -32,10 +31,10 @@ function PostCard({ post, removePost }) {
         <p>{post.post_body}</p>
         <div>
           <button
-            className="mt-2 text- "
+            className="mt-9 "
             type="button"
             onClick={() => setCount(count + 1)}>
-            upvote + : {post.upvote}
+            Upvote: {post.upvote}
           </button>
         </div>
       </div> 
@@ -45,8 +44,8 @@ function PostCard({ post, removePost }) {
       >
       delete
       </button> */}
+      <hr />
       <CommentForm appendComment={appendComment}/>
-    <hr />
       <div>Comments:
         {postComment}
       </div>

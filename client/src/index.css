@@ -10,20 +10,21 @@ body {
 .bg-img {
   height: 100%;
   min-width: 100%;
-  position:absolute;
-  opacity: 30%;
+  position:flex;
+  /* opacity: 90%; */
 }
 
 .section-text {
+  position: flex;
   font-size: 70px;
   font-weight: 200;
-  margin:0;
-  margin-top: 250px;
-  margin-left: 270px;
-  margin-right: 120px; 
-  display:flex;
-  justify-content: center;
-  align-items: center;
+  /* margin:0; */
+  /* margin-top: 250px; */
+  /* margin-left: 270px;
+  margin-right: 120px;  */
+  /* display:flex; */
+  justify-content:center;
+  align-items:center;
 }
 
 .section-text a:hover {
@@ -72,7 +73,7 @@ body {
 }
 
 #upvote-icon {
-  width: 55px;
+  width: 30px;
 }
 
 .comment-button {

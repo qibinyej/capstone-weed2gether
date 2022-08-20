@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   # skip_before_Action :authenticate_user, only: [:create] #sign up to create posts
-  before_action :set_post, only: %i[ :show, :update, :destroy ]
+  before_action :set_post, only: %i[ show update destroy ]
 
   def welcome
     render json: {message: "Welcome to weed2gether"}
@@ -19,9 +19,9 @@ class PostsController < ApplicationController
 
   # POST /posts
   def create
-    user = @current_user
     post = Post.create!(post_params)
-    post.user = user
+    UserPost.create!(post_id: post.id, user_id: session[:user_id])
+  
     render json: post, status: :created
   end
 

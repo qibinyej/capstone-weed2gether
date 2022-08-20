@@ -3,12 +3,11 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Login from './components/Login';
 import Logout from "./components/Logout";
 import Signup from "./components/Signup";
-import NavBar from './components/NavBar';
-import About from './components/About';
+import NavBar from './components/NavBar'
 import Posts from './components/Posts';
 import Resources from './components/Resources';
-import BgAnimate from "./components/BgAnimate";
 import MyPage from "./components/MyPage";
+import Test from './components/Test';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(false)
@@ -47,29 +46,26 @@ function App() {
       <BrowserRouter>
         <NavBar />
           <Switch>
-            {/* <Route path='/'>
-            <BgAnimate />
-            </Route> */}
+          <Route path='/test'>
+              <Test />
+            </Route>
             <Route path='/logout'>
               <Logout />
             </Route>
             <Route path="/login">
               <Login />
             </Route>
+            <Route path="/MyPage" component={MyPage}>
+              <MyPage />
+           </Route>
             <Route path="/signup">
               <Signup />
             </Route>
-            <Route path="/Posts">
+            <Route exact path="/Posts">
               <Posts postData={postData} removePost={removePost}/>
-            </Route>
-            <Route path="/About">
-              <About />
             </Route>
             <Route path="/Resources">
               <Resources />
-           </Route>
-           <Route path="/MyPage">
-              <MyPage />
            </Route>
           </Switch> 
       </BrowserRouter>

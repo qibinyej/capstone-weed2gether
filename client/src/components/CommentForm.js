@@ -16,8 +16,7 @@ function CommentForm({ appendComment }) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(
-          newComment,
-    
+          {newComment}
         )
       })
     .then(r=>r.json())

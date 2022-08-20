@@ -8,8 +8,8 @@ function NavBar() {
             <img className='' src='/marijuana+weed+icon128.png' alt='navbar-icon' />
             <ul>
                 <li>weed2gether</li>
-                <li><Link to='/about'>About</Link></li> 
-                <li><Link to='/posts'>Posts</Link></li> 
+                <li><Link to='/Test'>TEST</Link></li>
+                <li><Link to='/Posts'>Home</Link></li> 
                 <li><Link to='/MyPage'>My Page</Link></li>
                 <li><Link to='/Resources'>Resources</Link></li>
                 <li className='split'><Link to='/logout'>Logout</Link></li>               

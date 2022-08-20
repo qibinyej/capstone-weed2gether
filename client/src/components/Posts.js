@@ -1,6 +1,6 @@
 import PostCard from './PostCard'
 import Articles from './Articles'
-import CommentCard from './CommentCard'
+
 
 function Posts({ postData, removePost }) {
 

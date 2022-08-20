@@ -3,14 +3,12 @@ import React from 'react'
 function BgAnimate() {
   return (
     <>
-    <img src='/MaryJane-weed.jpeg' className="bg-img"/>
     <div className='section-text'>
-      <a className='wd-res'>Weed Responsibly</a>
-      <a className='community'>Joint Our Community</a>
+      {/* <p className='wd-res'>Weed Responsibly</p>
+      <p className='community'>Joint Our Community</p>
+      <img src='/MaryJane-weed.jpeg' className="bg-img"/> */}
     </div>
-   
     </>
-    
   )
 }
 
