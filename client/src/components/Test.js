@@ -1,22 +1,39 @@
-import {React, useState} from 'react'
+import {React, useEffect, useState} from 'react'
 
 
 
 function Test() {
- const [isLogin, setIsLogin] = useState(false)
 
+  const [title, setTitle] = useState([])
+  const [postBody, setPostBody] = useState([])
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    fetch("/posts", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        title: title,
+        post_body: postBody,
+      }),
+    })
+      .then((r) => r.json())
+      .then((data) => console.log(data));
+  };
+
+//   const timestamp = Date.now();
+//  let postTime = new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(timestamp)
 
 
   return (
     <div>
-        <button onClick={()=>setIsLogin(! isLogin)}
-        className="mt-2 bg-gray-400 border border-transparent rounded py-1 px-2 flex items-center justify-center text-base font-sm text-black hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-300">
-         
-           {isLogin ? <h1>log out</h1> : <h1>log in</h1>}
-        </button>
+      
     </div>
+       
   )
 }
 
+// setTimeout(() => {
+              //   rerouteHome()
+              // }, 1000);
 export default Test

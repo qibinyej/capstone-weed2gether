@@ -5,7 +5,7 @@ function CommentForm({ appendComment }) {
   const [newComment, setNewComment] = useState("")
   const handleComment = (e) => setNewComment(e.target.value)
   const addNewComment = (e) => {
-    // console.log(newComment)
+    console.log(newComment)
     e.preventDefault()
     // const new = {
     //   newComment,
@@ -16,11 +16,13 @@ function CommentForm({ appendComment }) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(
-          {newComment}
+         comment: newComment,
+         post_id,
+         user_id
         )
       })
     .then(r=>r.json())
-    .then(appendComment)
+    .then(data=>appendComment(data))
   }
 
   return (
@@ -33,7 +35,8 @@ function CommentForm({ appendComment }) {
             type='text'
             value={newComment}
             placeholder="enter comment..." />
-            <button className='comment-button' type="submit" >send</button>
+            <button className="mt-1 bg-white border border-black rounded py-1 px-1 text-base font-sm text-black hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-300"
+            type="submit">send</button>
         </label>
       </form>
     // </div>

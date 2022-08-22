@@ -20,37 +20,47 @@ function Signup({ updateUser }) {
         password
       })
     })
-    .then(r => r.json())
-    .then(data=> console.log('signed up!'))
-      // if(r.ok) {
-      //   r.json().then(user=> {
-      //     updateUser(user)
-      //     history.push(`/users/${user.id}`)
-      //   })
-      // }else{
-      //   r.json().then(setErrors(errors))
-      // }
-    // })
-  }
+    .then(r => {
+      if(r.ok) {
+        r.json().then(user=> {
+          updateUser(user)
+          history.push(`/users/${user.id}`)
+        })
+      }else{
+        r.json().then(setErrors(errors))
+      }
+    }) 
+}
 
   return (
     <>
       <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8">
           <div>
-            {/* <img
-          className="mx-auto h-21 w-auto"
+            <img
+          className="mx-auto h-20 w-19"
           src="/marijuana+weed+icon256.png"
           alt="login-icon"
-        /> */}
+        />
             <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Create an account</h2>
           </div>
+
+          <div className="flex justify-center items-center text-sm">
+            Already have an account?
+            <a
+              href="/Login"
+              className="font-medium text-indigo-600 hover:text-indigo-500"
+            >
+              {"Login"}
+            </a>
+          </div>
+
           <form onSubmit={handleAddUser} className="mt-8 space-y-6" action="#" method="POST">
             {/* <input type="hidden" name="remember" defaultValue="true" /> */}
             <div className="rounded-md shadow-sm -space-y-px">
               <div>
-                <label htmlFor="email-address" className="sr-only">
-                  Email address
+                <label htmlFor="username" className="sr-only">
+                  Username
                 </label>
                 <input onChange={(e) => setUsername(e.target.value)}
                   id="signup-username"
@@ -63,7 +73,7 @@ function Signup({ updateUser }) {
                 />
               </div>
               <div>
-                <label htmlFor="password" className="sr-only">
+                <label type="hidden" htmlFor="password" className="sr-only">
                   Password
                 </label>
                 <input

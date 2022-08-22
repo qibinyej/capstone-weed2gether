@@ -11,7 +11,6 @@ function Logout() {
           .then(res => {
             if (res.ok) { console.log("Logged out!") }
             else { console.log("Log out failed... Try again... Bazinga!") }
-            return res
         })
         .then(res => res.json())
         .then(data => console.log(data))
@@ -22,8 +21,8 @@ function Logout() {
     <div>
         <button 
         onClick={handleLogout}
-        className="mt-2 bg-gray-400 border border-transparent rounded py-1 px-2 flex items-center justify-center text-base font-sm text-black hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-300">
-          Logout
+        className="mt-1 bg-white border border-black rounded py-1 px-1 flex items-center justify-center text-base font-sm text-black hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-300">
+          log out
         </button>
     </div>
   )

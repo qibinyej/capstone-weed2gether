@@ -5,18 +5,13 @@ import { useHistory } from "react-router-dom";
 function Login({ updateUser }) {
   const [username, setUsername] = useState({});
   const [password, setPassword] = useState({});
-  
- 
+  const [errors, setErrors] = useState([]);
 
   const history = useHistory();
 
-  function rerouteHome() {
-    history.push("/MyPage");
-  }
-
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log("hello");
+
     fetch("/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -24,42 +19,50 @@ function Login({ updateUser }) {
         username,
         password,
       }),
-    })
-    .then((res) => {
+    }).then((res) => {
       if (res.ok) {
-        console.log("Logged in!");
+        res.json().then((user) => {
+          console.log("Logged in!");
+          updateUser(user)
+          history.push(`/users/${user.id}`);
+        });
       } else {
         console.log("failed to log in!");
+        res.json().then((json) => setErrors(Object.entries(json.errors)));
       }
       return res;
-    })
-    .then((res) => res.json())
-    .then((data) => console.log(data))
-    .then(history.push('/MyPage'))
-    .catch((error) => console.log(error))
-  }
+    });
+    // .then(history.push('/MyPage')) how to redirect to my page after login?
+  };
 
   return (
     <>
       <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8">
           <div>
-            {/* <img
-              className="mx-auto h-21 w-auto"
+            <img
+              className="mx-auto h-20 w-19"
               src="/marijuana+weed+icon256.png"
               alt="login-icon"
-            /> */}
+            />
             <h2 className="mt-6 text-center text-3xl font-extrabold text-grey-800">
-              Log in to an account
+              Login to an account
             </h2>
+          </div>
+
+          <div className="flex justify-center items-center text-sm">
+            Don't have an account?
+            <a
+              href="/Signup"
+              className="font-medium text-indigo-600 hover:text-indigo-500"
+            >
+              {"Signup"}
+            </a>
           </div>
 
           <form
             onSubmit={(e) => {
               handleLogin(e);
-              // setTimeout(() => {
-              //   rerouteHome()
-              // }, 1000);
             }}
             className="mt-8 space-y-6"
             action="#"
@@ -82,6 +85,7 @@ function Login({ updateUser }) {
                   required
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                   placeholder="Username"
+                
                 />
               </div>
 
@@ -121,7 +125,7 @@ function Login({ updateUser }) {
 
               <div className="text-sm">
                 <a
-                  href="#"
+                  href="/Signup"
                   className="font-medium text-indigo-600 hover:text-indigo-500"
                 >
                   {"Forgot your password?"}
@@ -130,7 +134,7 @@ function Login({ updateUser }) {
             </div>
 
             <div>
-              <button               
+              <button
                 type="submit"
                 className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
@@ -143,12 +147,10 @@ function Login({ updateUser }) {
                 Log in
               </button>
             </div>
-            {/* <div className="flex items-center text-sm">
-                <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-                  {"Create an account"}
-                </a>
-              </div> */}
           </form>
+          {errors
+            ? errors.map((e, index) => <div key={index}>{e[1]}</div>)
+            : null}
         </div>
       </div>
     </>
