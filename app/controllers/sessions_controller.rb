@@ -15,5 +15,6 @@ class SessionsController < ApplicationController
         session.delete(:user_id) #removing id from session/forgetting about our user
         head :no_content
     end
+    
 end
 

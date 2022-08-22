@@ -7,7 +7,7 @@ class ApplicationController < ActionController::API
 
     def current_user
       @current_user ||= session[:user_id] && User.find_by_id(session[:user_id]) #memorization
-      
+
     end
 
     private
@@ -17,6 +17,7 @@ class ApplicationController < ActionController::API
     # a Rails application; logging in sets the session value and
     # logging out removes it.
     def authenticate_user
+      # @current_user = User.find_by_id(session[:user_id])
       render json: { errors: {User: "Not Authorized"}}, status: :unauthorized unless current_user #checking if user is logged in only
     end
 

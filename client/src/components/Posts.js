@@ -1,9 +1,22 @@
 import PostCard from "./PostCard";
 import Articles from "./Articles";
+import {useEffect, useState} from 'react'
 
-function Posts({ postData, removePost }) {
+function Posts() {
+  
+  const [postData, setPostData] = useState([]);
+  useEffect (() => {
+    fetch("/posts")
+      .then((r) => r.json())
+      .then((data) => {
+        if (data.length > 0) {
+          setPostData(data);
+        }
+      });
+  }, [])
+
   const post = postData.map((post) => {
-    return <PostCard key={post.id} post={post} removePost={removePost} />;
+    return <PostCard key={post.id} post={post} />;
   });
 
   return (

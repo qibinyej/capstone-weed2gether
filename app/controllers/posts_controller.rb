@@ -1,20 +1,21 @@
 class PostsController < ApplicationController
-  # skip_before_Action :authenticate_user, only: [:create] #sign up to create posts
+  skip_before_action :authenticate_user, only: [:create,:index, :destroy] #sign up to create posts
   before_action :set_post, only: %i[ show update destroy ]
 
-  def welcome
-    render json: {message: "Welcome to weed2gether"}
-  end
+  # def welcome
+  #   render json: {message: "Welcome to weed2gether"}
+  # end
   # GET /posts
   def index
-    @posts = Post.all
+    posts = Post.all
 
-    render json: @posts
+    render json: posts
   end
 
   # GET /posts/1
   def show
-    render json: @post
+    post = Post.find(params[:id])
+    render json: post
   end
 
   # POST /posts
@@ -36,7 +37,9 @@ class PostsController < ApplicationController
 
   # DELETE /posts/1
   def destroy
-    @post.destroy
+    post = Post.find(params[:id])
+    post.destroy
+    head :no_content
   end
 
   private

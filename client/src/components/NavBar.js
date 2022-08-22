@@ -1,22 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Logout from "./Logout";
 
 function NavBar({ currentUser }) {
+
   return (
     <div className="navbar-links">
-      <img
-        className="mt-2 h-10 w-10"
-        src="/marijuana+weed+icon128.png"
-        alt="navbar-icon"
-      />
+      <span>
+        <img
+          className="mt-2 h-10 w-10"
+          src="/marijuana+weed+icon128.png"
+          alt="navbar-icon"
+        />
+      </span>
+      <span className="weed-title">
+        <strong>Weed 2gether</strong>
+      </span>
       <ul>
-        <li>
-          <strong>Weed 2gether</strong>
-        </li>
-        <li>
+        {/* <li>
           <Link to="/Test">TEST</Link>
-        </li>
+        </li> */}
         <li>
           <Link to="/Posts">Home</Link>
         </li>
@@ -24,9 +26,10 @@ function NavBar({ currentUser }) {
           <Link to="/Resources">Resources</Link>
         </li>
         {currentUser ? (
-          <li><Link to="/MyPage">My Page</Link></li>
+          <li>
+            <Link to="/MyPage">My Page</Link>
+          </li>
         ) : null}
-        {currentUser ? <Logout /> : null}
         <li className="split">
           <Link to="/login">Login</Link>
         </li>

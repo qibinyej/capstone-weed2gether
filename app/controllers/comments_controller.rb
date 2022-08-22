@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   skip_before_action :authenticate_user, only: [:create] #sign up to post comments
-  before_action :set_comment, only: %i[ show update destroy ]
+  # before_action :set_comment, only: %i[ show update destroy ]
 
   # GET /comments
   def index
@@ -16,9 +16,9 @@ class CommentsController < ApplicationController
 
   # POST /comments
   def create
-    @comment = Comment.create!(comment_params)
+    comment = Comment.create!(comment_params)
 
-    render json: @comment, status: :created
+    render json: comment, status: :created
   end
 
   # PATCH/PUT /comments/1
@@ -37,9 +37,9 @@ class CommentsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_comment
-      @comment = Comment.find(params[:id])
-    end
+    # def set_comment
+    #   @comment = Comment.find(params[:id])
+    # end
 
     # Only allow a list of trusted parameters through.
     def comment_params

@@ -20,8 +20,8 @@ p1 = Post.create!(title: "question!", post_body: "I got qestions!", upvote: 10)
 p2 = Post.create!(title: "answer", post_body: "I got answers!", upvote: 19)
 
 puts "creating user_posts"
-UserPost.create!(user_id: u1, post_id: p1)
-UserPost.create!(user_id: u2, post_id: p2)
+UserPost.create!(user_id: u1.id, post_id: p1.id)
+UserPost.create!(user_id: u2.id, post_id: p2.id)
 
 puts "creating comments"
 c1 = Comment.create!(comment:"Good!", post_id: p1.id, user_id: u1.id)

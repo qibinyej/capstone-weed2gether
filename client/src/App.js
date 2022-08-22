@@ -6,81 +6,56 @@ import NavBar from "./components/NavBar";
 import Posts from "./components/Posts";
 import Resources from "./components/Resources";
 import MyPage from "./components/MyPage";
-import Test from "./components/Test";
 
 function App() {
-  const [currentUser, setCurrentUser] = useState(false);
-  const [postData, setPostData] = useState([]);
-  const [deletePost, setDeletePost] = useState([]);
-  const [user, setUser] = useState({
-    username:"",
-    posts:[],
-    comments:[]
-  })
-  // const [errors, setErrors] = useState([])
+  const [currentUser, setCurrentUser] = useState(false); // currentUser exist?
+  const [user, setUser] = useState(
+    {"username":"",
+    "posts":[],
+    "comments":[]}
+  ) // render current user posts and comments
+  const [comments, setComments] = useState([])
+  const [posts, setPosts ] = useState([])
+  const [errors, setErrors] = useState([]) 
+
+  const updateUser = () => 
+    setCurrentUser(!currentUser);
+
   useEffect(() => {
-    fetchPosts();
-    fetchMe();
+    fetch("/me")
+    .then((r) => r.json())
+    .then((r) => {
+      if (r.username) {
+        setUser(r)
+        setComments(r.comments)
+        setCurrentUser(true)
+        setPosts(r.posts)
+      } else {
+        r.json().then(data=>setErrors(data.errors))
+      }
+    });
   }, []);
 
-  const fetchPosts = () => {
-    fetch("/posts")
-      .then((r) => r.json())
-      .then((data) => {
-        if (data.length > 0) {
-          setPostData(data);
-        }
-      });
-  };
-  
-  const updateUser = (user) => {
-    setCurrentUser(user);
-  };
 
-  const fetchMe = () => {
-    fetch("/me")
-      .then((r) => r.json())
-      .then((r) => {
-        // console.log(r)
-        setUser(r)
-        updateUser(r);
-      });
-  };
-
-  const removePost = (post) => {
-    fetch(`/posts/${post.id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-type": "application/json",
-      },
-    })
-      .then((r) => r.json())
-      .then(handleDeletePost);
-  };
-
-  const handleDeletePost = (id) =>
-    setDeletePost((current) => current.filter((p) => p.id !== id));
-
+//  const deletePost = (id) =>
+//   setPosts((current) => current.filter((p) => p.id !== id));
 
   return (
     <>
       <BrowserRouter>
-        <NavBar currentUser={currentUser}/>
+        <NavBar user={user} currentUser={currentUser}/>
         <Switch>
-          <Route path="/test">
-            <Test />
-          </Route>
           <Route path="/login">
-            <Login updateUser={updateUser} />
+            <Login updateUser={updateUser} setUser={setUser} />
           </Route>
           <Route path="/MyPage">
-            <MyPage updateUser={updateUser} currentUser={currentUser} user={user} />
+            <MyPage comments={comments} updateUser={updateUser} currentUser={currentUser} user={user} posts={posts}/>
           </Route>
           <Route path="/signup">
             <Signup updateUser={updateUser}/>
           </Route>
           <Route exact path="/Posts">
-            <Posts postData={postData} removePost={removePost} />
+            <Posts comments={comments} />
           </Route>
           <Route path="/Resources">
             <Resources />

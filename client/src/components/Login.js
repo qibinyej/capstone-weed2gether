@@ -1,8 +1,7 @@
-import { LockClosedIcon } from "@heroicons/react/solid";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-function Login({ updateUser }) {
+function Login({ setUser, updateUser}) {
   const [username, setUsername] = useState({});
   const [password, setPassword] = useState({});
   const [errors, setErrors] = useState([]);
@@ -11,7 +10,6 @@ function Login({ updateUser }) {
 
   const handleLogin = (e) => {
     e.preventDefault();
-
     fetch("/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -24,7 +22,8 @@ function Login({ updateUser }) {
         res.json().then((user) => {
           console.log("Logged in!");
           updateUser(user)
-          history.push(`/users/${user.id}`);
+          setUser(user);
+          history.push("/MyPage");
         });
       } else {
         console.log("failed to log in!");
@@ -32,7 +31,6 @@ function Login({ updateUser }) {
       }
       return res;
     });
-    // .then(history.push('/MyPage')) how to redirect to my page after login?
   };
 
   return (
@@ -138,12 +136,6 @@ function Login({ updateUser }) {
                 type="submit"
                 className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
-                <span className="absolute left-0 inset-y-0 flex items-center pl-3">
-                  <LockClosedIcon
-                    className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
-                    aria-hidden="true"
-                  />
-                </span>
                 Log in
               </button>
             </div>

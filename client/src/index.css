@@ -115,6 +115,11 @@ div.comment-send {
   margin: 10px;
   padding: 0px;
 }
+
+.weed-title {
+  display: flex;
+  align-items: center;
+}
 /* .form-container {
   padding: 5px;
   background: lightgrey;

@@ -1,6 +1,8 @@
 import React from 'react'
+import { useHistory} from 'react-router-dom'
 
-function Logout() {
+function Logout({updateUser}) {
+  const history = useHistory()
 
     const handleLogout = (e)=> {
         e.preventDefault()
@@ -9,12 +11,13 @@ function Logout() {
           headers:{ 'Content-Type': 'application/json'},
           })
           .then(res => {
-            if (res.ok) { console.log("Logged out!") }
-            else { console.log("Log out failed... Try again... Bazinga!") }
+            if (res.ok) { 
+              console.log("Logged out!") 
+              updateUser(res)
+              history.push('/posts')
+              }
+            else {res.json().then(console.log("Try again... "))}  
         })
-        .then(res => res.json())
-        .then(data => console.log(data))
-        .catch(error => console.log(error))
       }
 
   return (

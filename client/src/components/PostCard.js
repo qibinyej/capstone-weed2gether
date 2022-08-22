@@ -2,11 +2,14 @@ import { React, useEffect, useState } from "react";
 import CommentCard from "./CommentCard";
 import CommentForm from "./CommentForm";
 
-function PostCard({ post, removePost }) {
+function PostCard({ post }) {
   const initialState = () =>
     Number(window.localStorage.getItem("count")) || post.upvote;
   // const [count, setCount] = useState(initialState);
+
   const [comments, setComments] = useState([]);
+  const [newComment, setNewComment] = useState("")
+  const handleComment = (e) => setNewComment(e.target.value)
 
   //rendering comments respectively
   const postComment = post.comments.map((comment) => {
@@ -16,6 +19,21 @@ function PostCard({ post, removePost }) {
   const appendComment = (comment) => {
     setComments([...comments, comment]);
   };
+
+  const addNewComment = (e) => {
+    e.preventDefault()
+    fetch('/comments', {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          "comment": newComment
+        })
+      })
+    .then(r=>r.json())
+    .then(data=>{
+      console.log(data)
+      appendComment(data)})
+  }
 
   // useEffect(() => {
   //   window.localStorage.setItem("count", count);
@@ -33,19 +51,14 @@ function PostCard({ post, removePost }) {
             className="mt-9 "
             type="button"
             // onClick={() => setCount(count + 1)}
-          >
-            Upvote: {post.upvote}
+            >
+            Upvote: 
           </button>
+          {post.upvote}
         </div>
       </div>
-      {/* <button 
-      onClick={removePost}
-      className="relative bg-gray-200 hover:bg-blue-500 text-black py-1 px-1 rounded"
-      >
-      delete
-      </button> */}
       <hr />
-      <CommentForm appendComment={appendComment} />
+      <CommentForm handleComment={handleComment} addNewComment={addNewComment} newComment={newComment}/>
       <div>
         Comments:
         {postComment}

@@ -10,6 +10,7 @@ class UserPostsController < ApplicationController
 
   # GET /user_posts/1
   def show
+    post = UserPost.find_by(session[:user_id])
     render json: @user_post
   end
 
