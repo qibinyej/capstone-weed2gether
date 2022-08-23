@@ -1,5 +1,4 @@
 import { React, useEffect, useState } from "react";
-import { useParams, useHistory } from "react-router-dom";
 import PostForm from "./PostForm";
 import Logout from "./Logout";
 
@@ -7,8 +6,6 @@ function MyPage({ comments, updateUser, currentUser, user, posts }) {
   const [title, setTitle] = useState("");
   const [postBody, setPostBody] = useState("");
   const [errors, setErrors] = useState(false);
-  const history = useHistory();
-  console.log(posts);
 
   const handleSubmit = (e) => {
     e.preventDefault();
