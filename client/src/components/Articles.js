@@ -1,15 +1,24 @@
 import {React, useEffect, useState} from 'react'
 
-function Articles() {
+function Articles({ articles }) {
 
-    // fetch news API
-  // const fetchNews = ()=> {
-  //   fetch('/api/3/laws/search?term=chickens')
-  //   legislation.nysenate.gov/api/3/laws/search?term=marijuanas/S1?key=pGjH469dftJJ48ZY5UaonFP5782Jhsg6
+  // console.log(articles)
 
-  // }    
+
   return (
-    <div>Articles</div>
+   <>
+      {/* {
+        articles.map((article)=>{
+          return <div className='article-container '>
+            <h1>{article.title}</h1>
+          <h1>{article.author}</h1>
+          <p>{article.description}</p>
+          </div>
+         })
+        } */}
+   
+   </>
+    
   )
 }
 

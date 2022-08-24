@@ -2,20 +2,29 @@ import { React, useEffect, useState } from "react";
 import PostForm from "./PostForm";
 import Logout from "./Logout";
 
-function MyPage({ comments, updateUser, currentUser, user, posts }) {
+function MyPage({updateUser, currentUser, user}) {
   const [title, setTitle] = useState("");
   const [postBody, setPostBody] = useState("");
   const [errors, setErrors] = useState(false);
+  const [posts, setPosts] = useState([])
+
+  useEffect(() => {
+    fetch('/my-posts')
+    .then(resp=> resp.json())
+    .then(data=>{
+      setPosts(data)
+    })
+  }, [])
 
   const handleSubmit = (e) => {
+    
     e.preventDefault();
     fetch("/post", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         title: title,
-        post_body: postBody,
-        user_id: currentUser.id,
+        post_body: postBody
       }),
     })
       .then((r) => r.json())
@@ -25,7 +34,7 @@ function MyPage({ comments, updateUser, currentUser, user, posts }) {
   };
 
   const handleDelete = (post) => {
-    console.log(post);
+    // console.log(post);
     fetch(`/posts/${post}`, {
       method: "DELETE",
       headers: {
@@ -72,13 +81,13 @@ function MyPage({ comments, updateUser, currentUser, user, posts }) {
               >
                 delete
               </button>
+            {post.comments.map((comment) => {
+              return <p key={comment.id}>{comment.comment}</p>;
+            })}
             </div>
           </div>
         )}
       </div>
-      {comments.map((comment) => {
-        <p key={comment.id}>{comment}</p>;
-      })}
     </div>
   );
 }

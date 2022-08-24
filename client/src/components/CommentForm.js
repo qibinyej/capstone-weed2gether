@@ -1,34 +1,36 @@
 import { React, useState } from "react";
 
-function CommentForm() {
-  // const [newComment, setNewComment] = useState("")
-  // const handleComment = (e) => setNewComment(e.target.value)
-  // const addNewComment = (e) => {
-  //   console.log(newComment)
-  //   e.preventDefault()
-  //   // const new = {
-  //   //   newComment,
-  //   //   user_id,
-  //   //   post_id
-  //   // };
-  //   fetch('/comments', {
-  //       method: "POST",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify(
-  //       { comment: newComment,
-  //        post_id:''}
-  //       )
-  //     })
-  //   .then(r=>r.json())
-  //   .then(data=>appendComment(data))
-  // }
+function CommentForm({post, user, handleAddComment}) {
+  const [newComment, setNewComment] = useState("")
+  // const [allComments, setAllComments] = useState(post.comments);
+  const [errors, setErrors] = useState([]);
 
+//  const handleNewComment = (newComment)=>setAllComments([...allComments, newComment ])
+   const addNewComment = (e) => {
+    e.preventDefault();
+    fetch("/comments", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        "comment": newComment,
+        "post_id": post.id,
+        "user_id": user.id
+      }),
+    }).then((r) =>{
+      if (r.ok) {
+        r.json().then(data=>handleAddComment(data, post))
+      } else {
+        r.json().then((data) => setErrors(data.errors));
+      }
+    });
+  };
+ 
   return (
     <>
       <form
         action="http://localhost:4000/comments"
         method="post"
-        onSubmit={"addNewComment"}
+        onSubmit={addNewComment}
       >
         <label
           htmlFor="post_title"
@@ -36,9 +38,9 @@ function CommentForm() {
         >
           <textarea
             className="comment-form"
-            onChange={"handleComment"}
+            onChange={(e)=> setNewComment(e.target.value)}
             type="text"
-            value={"newComment"}
+            value={newComment}
             placeholder="enter comment..."
           />
           <button

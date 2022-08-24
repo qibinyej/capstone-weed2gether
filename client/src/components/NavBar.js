@@ -23,6 +23,9 @@ function NavBar({ currentUser }) {
           <Link to="/Posts">Home</Link>
         </li>
         <li>
+          <Link to="/Articles">News</Link>
+        </li>
+        <li>
           <Link to="/Resources">Resources</Link>
         </li>
         {currentUser ? (
