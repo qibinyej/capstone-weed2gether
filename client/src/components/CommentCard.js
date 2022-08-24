@@ -2,6 +2,7 @@ import React from "react";
 
 function CommentCard({ post }) {
   const comments = post.comments;
+  console.log(post)
 
   return (
     <div className="md:container md:mx-auto px-4">

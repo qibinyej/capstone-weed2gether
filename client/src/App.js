@@ -7,6 +7,7 @@ import Posts from "./components/Posts";
 import Resources from "./components/Resources";
 import MyPage from "./components/MyPage";
 import Articles from "./components/Articles";
+import UpdatePost from "./components/UpdatePost";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(false); // currentUser exist?
@@ -37,6 +38,7 @@ function App() {
   };
 
   //render user posts
+  const updateUser = () => setCurrentUser(!currentUser);
   useEffect(() => {
     fetch("/me")
       .then((r) => r.json())
@@ -45,14 +47,12 @@ function App() {
           setUser(r);
           setComments(r.comments);
           setCurrentUser(true);
-          // setPosts(r.posts)
+          setPosts(r.posts)
         } else {
           r.json().then((data) => setErrors(data.errors));
         }
       });
   }, []);
-
-  const updateUser = () => setCurrentUser(!currentUser);
 
   //render posts
   useEffect(() => {
@@ -83,18 +83,39 @@ function App() {
       });
   }, []);
 
-  //fetch NYS law
+  //fetch NYS bills
   const [bills, setBills] = useState([]);
-  // let billUrl =
-  //   "https://legislation.nysenate.gov/api/3/bills/search?term=%22cannabis%22?key=ugdcx74C59qitKq4KoCTDgLyOtlZoP2p";
-  // useEffect(() => {
-  //   fetch(billUrl)
-  //     .then((r) => r.json())
-  //     .then((data) => {
-  //       console.log(data);
-  //       setBills(data.items);
-  //     });
-  // }, []);
+  let billUrl =
+    "https://legislation.nysenate.gov/api/3/bills/search?term=%22marijuana%22&sort=signed:DESC,session:DESC&key=ugdcx74C59qitKq4KoCTDgLyOtlZoP2p";
+  useEffect(() => {
+    fetch(billUrl)
+      .then((r) => r.json())
+      .then((data) => {
+        // console.log(data.result.items);
+        setBills(data.result.items);
+      });
+  }, []);
+
+  const [posts, setPosts] = useState([]);
+
+  const updatePost = (post)=>{
+    fetch(`/posts/${post.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(post),
+    })
+      .then((r) => r.json())
+      .then((data) => {
+        console.log(data);
+        setPosts(posts.map((item)=>{
+          if(item.id===post.id){
+            return post
+          }else {return item}
+        }))
+        
+      });
+  }
+  
 
   return (
     <>
@@ -110,7 +131,10 @@ function App() {
               updateUser={updateUser}
               currentUser={currentUser}
               user={user}
-              posts={handlePosts}
+              // posts={handlePosts}
+              updatePost={updatePost}
+            posts={posts}
+            setPosts={setPosts}
             />
           </Route>
           <Route path="/signup">
@@ -129,6 +153,9 @@ function App() {
           </Route>
           <Route path="/Resources">
             <Resources user={user} bills={bills} />
+          </Route>
+          <Route path="/UpdatePost">
+            <UpdatePost />
           </Route>
         </Switch>
       </BrowserRouter>

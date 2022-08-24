@@ -72,13 +72,6 @@ body {
   color:blue;
 }
 
-.post-container{
-    width:90%;
-    margin: 5px;
-    padding: 5px;
-    border: 1px solid green;
-    border-radius: 20px;
-}
 
 #upvote-icon {
   width: 40px;
@@ -118,14 +111,30 @@ div.comment-send {
   display: flex;
   align-items: center;
 }
-
+.all-posts{
+  width: 100%;
+  background-color: aqua;
+  display: inline-block;
+}
 .post-group {
+  width: 80%;
+
   display:grid;
-  max-width: 50rem;
-  margin: 0 auto;
+
+  margin: 0;
   margin-top:10px;
-  padding: 1.5rem;
+  margin-left: 10%;
+  
   border-radius: 0.5rem;
   background-color: #fff;
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 10px 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
+.post-container{
+  width:90%;
+  margin: auto;
+margin-top: 20px;
+  padding: 5px;
+  border: 1px solid green;
+  border-radius: 20px;
+}
+

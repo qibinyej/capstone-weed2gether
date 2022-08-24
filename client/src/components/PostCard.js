@@ -4,8 +4,7 @@
 
 // function PostCard({ post, user,addNewComment, newComment, setNewComment, allComments, handleSelectedPost }) {
 //   const initialState = () =>
-//     Number(window.localStorage.getItem("count")) || post.upvote;
-//   // const [count, setCount] = useState(initialState);
+// 
 
 //   return (
 //     <div onClick={()=>handleSelectedPost(post)} className="relative mx-auto px-4 box-content h-100% w-100% p-4 border-2 border-gray-200 bg-gray-100 bg-cyan-500 shadow-lg shadow-cyan-500/50">

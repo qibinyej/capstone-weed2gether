@@ -2,10 +2,8 @@ import { React, useState } from "react";
 
 function CommentForm({post, user, handleAddComment}) {
   const [newComment, setNewComment] = useState("")
-  // const [allComments, setAllComments] = useState(post.comments);
   const [errors, setErrors] = useState([]);
 
-//  const handleNewComment = (newComment)=>setAllComments([...allComments, newComment ])
    const addNewComment = (e) => {
     e.preventDefault();
     fetch("/comments", {
@@ -20,7 +18,7 @@ function CommentForm({post, user, handleAddComment}) {
       if (r.ok) {
         r.json().then(data=>handleAddComment(data, post))
       } else {
-        r.json().then((data) => setErrors(data.errors));
+        r.json().then((data) => setErrors(Object.entries(data.errors)));
       }
     });
   };

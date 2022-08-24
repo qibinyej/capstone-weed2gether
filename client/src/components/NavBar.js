@@ -21,7 +21,7 @@ function NavBar({ currentUser }) {
           <Link to="/Articles">News</Link>
         </li>
         <li>
-          <Link to="/Resources">Resources</Link>
+          <Link to="/Resources">NYS Legislation</Link>
         </li>
         {currentUser ? (
           <li>
