@@ -16,12 +16,12 @@ u1 = User.create!(username: "admin1", password: "adminuser1")
 u2 = User.create!(username: "admin2", password: "adminuser2")
 
 puts "creating posts"
-p1 = Post.create!(title: "question!", post_body: "I got qestions!", upvote: 10)
-p2 = Post.create!(title: "answer", post_body: "I got answers!", upvote: 19)
+p1 = Post.create!(title: "question!", post_body: "I got qestions!", upvote: 10, user_id: u1.id)
+p2 = Post.create!(title: "answer", post_body: "I got answers!", upvote: 19, user_id: u2.id)
 
-puts "creating user_posts"
-UserPost.create!(user_id: u1.id, post_id: p1.id)
-UserPost.create!(user_id: u2.id, post_id: p2.id)
+# puts "creating user_posts"
+# UserPost.create!(user_id: u1.id, post_id: p1.id)
+# UserPost.create!(user_id: u2.id, post_id: p2.id)
 
 puts "creating comments"
 c1 = Comment.create!(comment:"Good!", post_id: p1.id, user_id: u1.id)

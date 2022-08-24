@@ -6,6 +6,11 @@ class PostsController < ApplicationController
   #   render json: {message: "Welcome to weed2gether"}
   # end
   # GET /posts
+  def user_posts
+    user = User.find_by_id(session[:user_id])
+    posts = user.posts
+    render json: posts
+  end
   def index
     posts = Post.all
 
@@ -20,8 +25,10 @@ class PostsController < ApplicationController
 
   # POST /posts
   def create
-    post = Post.create!(post_params)
-    UserPost.create!(post_id: post.id, user_id: session[:user_id])
+    post = Post.new(post_params)
+    post.user_id = session[:user_id]
+    post.save!
+    # UserPost.create!(post_id: post.id, user_id: session[:user_id])
   
     render json: post, status: :created
   end
@@ -50,6 +57,6 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.permit(:title, :post_body, :upvote)
+      params.permit(:title, :post_body, :upvote, :user_id)
     end
 end

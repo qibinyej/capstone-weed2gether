@@ -5,20 +5,15 @@ function NavBar({ currentUser }) {
 
   return (
     <div className="navbar-links">
-      <span>
         <img
           className="mt-2 h-10 w-10"
           src="/marijuana+weed+icon128.png"
           alt="navbar-icon"
         />
-      </span>
-      <span className="weed-title">
-        <strong>Weed 2gether</strong>
-      </span>
+      <h1 className="weed-title">
+        <strong>weed2gether</strong>
+      </h1>
       <ul>
-        {/* <li>
-          <Link to="/Test">TEST</Link>
-        </li> */}
         <li>
           <Link to="/Posts">Home</Link>
         </li>
@@ -33,7 +28,7 @@ function NavBar({ currentUser }) {
             <Link to="/MyPage">My Page</Link>
           </li>
         ) : null}
-        <li className="split">
+        <li className="split float-right">
           <Link to="/login">Login</Link>
         </li>
       </ul>

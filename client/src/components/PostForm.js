@@ -3,7 +3,7 @@ import React from "react";
 function PostForm({ handleSubmit, setTitle, setPostBody }) {
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="mt-10 px-10">
       <label
         htmlFor="post_title"
         className="block text-sm font-medium text-gray-700">
@@ -28,7 +28,7 @@ function PostForm({ handleSubmit, setTitle, setPostBody }) {
       <button
         type="submit"
         value="Submit"
-        className="mt-2 bg-gray-400 border border-transparent rounded py-1 px-2 flex items-center justify-center text-base font-sm text-black hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-300">
+        className="mt-2 float-left bg-white border border-gray-400 rounded-lg py-1 px-2 flex items-center justify-center text-sm font-sm text-black hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-300">
         submit
       </button>
     </form>

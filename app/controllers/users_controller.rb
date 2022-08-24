@@ -13,7 +13,7 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
-    user =User.find_by_id(session[:user_id])
+    user = User.find_by_id(session[:user_id])
     render json: user, serializer: UserAllpostsSerializer
   end
 

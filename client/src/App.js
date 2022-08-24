@@ -61,7 +61,6 @@ function App() {
       .then((data) => {
         if (data.length > 0) {
           setPostData(data);
-          console.log(data);
         }
       });
   }, []);
@@ -71,16 +70,31 @@ function App() {
     return posts;
   };
 
-  const [articles, setArticles] = useState()
-    // fetch news API
- useEffect(()=>{
-  fetch('https://newsapi.org/v2/everything?q=marijuana&apiKey=cd6d486774f847cfba67743ef21b8658')
-  .then(r=>r.json())
-  .then(data=>{
-    // console.log(data)
-    setArticles(data.articles)
-  })
- },[])
+  // fetch news API
+  const [articleArr, setArticles] = useState([]);
+  let newsUrl =
+    "https://newsapi.org/v2/everything?q=marijuana&apiKey=19762554859c418cb275101d9f469ffc";
+  useEffect(() => {
+    fetch(newsUrl)
+      .then((r) => r.json())
+      .then((data) => {
+        // console.log(data.articles)
+        setArticles(data.articles);
+      });
+  }, []);
+
+  //fetch NYS law
+  const [bills, setBills] = useState([]);
+  // let billUrl =
+  //   "https://legislation.nysenate.gov/api/3/bills/search?term=%22cannabis%22?key=ugdcx74C59qitKq4KoCTDgLyOtlZoP2p";
+  // useEffect(() => {
+  //   fetch(billUrl)
+  //     .then((r) => r.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //       setBills(data.items);
+  //     });
+  // }, []);
 
   return (
     <>
@@ -108,14 +122,13 @@ function App() {
               comments={comments}
               user={user}
               handleAddComment={handleAddComment}
-              articles={articles}
             />
           </Route>
           <Route path="/Articles">
-            <Articles articles={articles} />
+            <Articles articleArr={articleArr} />
           </Route>
           <Route path="/Resources">
-            <Resources user={user} />
+            <Resources user={user} bills={bills} />
           </Route>
         </Switch>
       </BrowserRouter>

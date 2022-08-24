@@ -14,6 +14,7 @@ function Logout({updateUser}) {
             if (res.ok) { 
               console.log("Logged out!") 
               updateUser(res)
+              // setDeletePost(res)
               history.push('/posts')
               }
             else {res.json().then(console.log("Try again... "))}  
@@ -24,7 +25,7 @@ function Logout({updateUser}) {
     <div>
         <button 
         onClick={handleLogout}
-        className="mt-1 bg-white border border-black rounded py-1 px-1 flex items-center justify-center text-base font-sm text-black hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-300">
+        className="mt-5 bg-white border border-gray-400 rounded py-1 px-1 items-center justify-center text-sm font-sm text-black hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-300">
           log out
         </button>
     </div>
