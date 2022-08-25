@@ -11,7 +11,7 @@ function CommentCard({ post }) {
 
       {comments.map((comment) => {
         return (
-          <div key={comment.id} className="overflow-y-scroll">
+          <div key={comment.id} className="w-4/5 m-0 ml-20 p-0.5 justify-items-center border border-gray-200 rounded-lg overflow-y-scroll">
             {comment.comment}
           </div>
         );

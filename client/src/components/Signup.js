@@ -98,6 +98,7 @@ function Signup({ updateUser }) {
           </form>
         </div>
       </div>
+      
     </>
   )
 }

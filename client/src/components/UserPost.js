@@ -36,7 +36,7 @@ function UserPost({ post, handleDelete, updatePost }) {
           <textarea
             onChange={handleUpdatedPost}
             value={updatedPost.post_body}
-            className="mt-3 border border-gray-400 rounded-lg"
+            className="mx-8 my-4 w-96 border border-gray-400 rounded-lg"
           ></textarea>
         ) : (
           <p className="mt-4 indent-8 text-base overflow-auto hover:overflow-scroll h-32">{post.post_body}</p>

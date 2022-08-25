@@ -7,6 +7,7 @@ import Posts from "./components/Posts";
 import Resources from "./components/Resources";
 import MyPage from "./components/MyPage";
 import Articles from "./components/Articles";
+import BgAnimate from "./components/BgAnimate";
 
 function App() {
   const [errors, setErrors] = useState([]);
@@ -21,8 +22,8 @@ function App() {
   const [posts, setPosts] = useState([]); //user's posts
   const [articleArr, setArticles] = useState([]);
   const [bills, setBills] = useState([]);
-  // console.log(posts)
   
+
   const handleAddComment = (comment, post) => {
     setPostData(
       postData.map((item) => {
@@ -46,101 +47,114 @@ function App() {
       .then((r) => r.json())
       .then((r) => {
         if (r.username) {
-          console.log(r)
+          console.log(r);
           setUser(r);
           setComments(r.comments);
           setCurrentUser(true);
-          setPosts(r.posts)
+          setPosts(r.posts);
         } else {
           r.json().then((data) => setErrors(Object.entries(data.errors)));
         }
       });
-    }, []);
-    
-    //render posts
-    useEffect(() => {
-      fetch("/posts")
+  }, []);
+
+  function addNewPost(data){
+    setPosts([data, ...posts ])
+  }
+
+  function addNewPostHome(data){
+    setPostData([data, ...postData ])
+  }
+
+  //render posts
+  useEffect(() => {
+    fetch("/posts")
       .then((r) => r.json())
       .then((data) => {
         if (data.length > 0) {
           setPostData(data);
         }
       });
-    }, []);
-    
-    // const handlePosts = () => {
-    //   const posts = postData.filter((post) => post.user.id === user.id);
-    //   return posts;
-    // };
-    
-    
-    //Edit a post
-    const updatePost = (post)=>{
-      fetch(`/posts/${post.id}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(post),
-      })
+  }, []);
+
+  // const handlePosts = () => {
+  //   const posts = postData.filter((post) => post.user.id === user.id);
+  //   return posts;
+  // };
+
+  //Edit a post
+  const updatePost = (post) => {
+    fetch(`/posts/${post.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(post),
+    })
       .then((r) => r.json())
       .then((data) => {
         console.log(data);
-        setPosts(posts.map((item)=>{
-          if(item.id===post.id){
-            return post
-          }else {return item}
-        }))
-        
+        setPosts(
+          posts.map((item) => {
+            if (item.id === post.id) {
+              return post;
+            } else {
+              return item;
+            }
+          })
+        );
       });
-    }
-    
-    // fetch news API
-    let newsUrl = "https://newsapi.org/v2/everything?q=marijuana&from=2022-08-01&sortBy=publishedAt&apiKey=cd6d486774f847cfba67743ef21b8658"
-    
-    useEffect(() => {
-      fetch(newsUrl)
-        .then((r) => r.json())
-        .then((data) => {
-          // console.log(data.articles)
-          setArticles(data.articles);
-        });
-    }, []);
-  
-    //fetch NYS bills
-  
-    let billUrl =
-      "https://legislation.nysenate.gov/api/3/bills/search?term=%22marijuana%22&sort=signed:DESC,session:DESC&key=ugdcx74C59qitKq4KoCTDgLyOtlZoP2p";
-    useEffect(() => {
-      fetch(billUrl)
-        .then((r) => r.json())
-        .then((data) => {
-          // console.log(data.result.items);
-          setBills(data.result.items);
-        });
-    }, []);
-    
+  };
 
-    return (
+  // fetch news API
+  let newsUrl =
+    "https://newsapi.org/v2/everything?q=marijuana&from=2022-08-01&sortBy=publishedAt&apiKey=cd6d486774f847cfba67743ef21b8658";
+
+  useEffect(() => {
+    fetch(newsUrl)
+      .then((r) => r.json())
+      .then((data) => {
+        // console.log(data.articles)
+        setArticles(data.articles);
+      });
+  }, []);
+
+  //fetch NYS bills
+
+  let billUrl =
+    "https://legislation.nysenate.gov/api/3/bills/search?term=%22marijuana%22&sort=signed:DESC,session:DESC&key=ugdcx74C59qitKq4KoCTDgLyOtlZoP2p";
+  useEffect(() => {
+    fetch(billUrl)
+      .then((r) => r.json())
+      .then((data) => {
+        // console.log(data.result.items);
+        setBills(data.result.items);
+      });
+  }, []);
+
+  return (
     <>
       <BrowserRouter>
         <NavBar user={user} currentUser={currentUser} />
+
         <Switch>
           <Route path="/login">
             <Login updateUser={updateUser} setUser={setUser} user={user} />
           </Route>
           <Route path="/MyPage">
             <MyPage
+            addNewPostHome={addNewPostHome}
+            addNewPost={addNewPost}
               comments={comments}
               updateUser={updateUser}
               currentUser={currentUser}
               user={user}
               // posts={handlePosts}
               updatePost={updatePost}
-            posts={posts}
-            setPosts={setPosts}
+              posts={posts}
+              setPosts={setPosts}
             />
           </Route>
           <Route path="/signup">
-            <Signup updateUser={updateUser} user={user} />
+            <Signup updateUser={updateUser} user={user} currentUser={currentUser}/>
           </Route>
           <Route exact path="/Posts">
             <Posts
@@ -148,6 +162,7 @@ function App() {
               comments={comments}
               user={user}
               handleAddComment={handleAddComment}
+              posts={posts}
             />
           </Route>
           <Route path="/Articles">

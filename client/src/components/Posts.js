@@ -1,18 +1,32 @@
-import { useState } from "react";
 import CommentCard from "./CommentCard";
 import CommentForm from "./CommentForm";
+import {useState} from 'react'
 
 function Posts({
   user,
   postData,
   handleAddComment,
+  posts
 }) {
-  // const initialState = () => Number(window.localStorage.getItem("count") || 0);
+
+  // let vote = posts.map((item)=>{
+  //   return item.upvote
+  // })
+
+  // const initialState = () => Number(window.localStorage.getItem("count") || vote );
   // const [count, setCount] = useState(initialState);
 
   return (
     <>
-      <h1 className="page-title "></h1>
+    <div className="justify">
+      <h1 className="mt-8 mb-4 flex justify-center font-bold text-lime-600 text-3xl">
+      WEED RESPONSIBLY
+      </h1>
+      <h1 className="mt-8 mb-4 flex justify-center font-bold text-lime-600 text-3xl">
+      JOINT OUR COMMUNITY
+      </h1>
+    </div>
+      
       {postData.map((post) => {
         return (
           <div key={post.id} className="post-group">
@@ -24,7 +38,7 @@ function Posts({
               <button
                 className="mt-6 bg-white rounded py-1 px-1 text-sm font-sm text-black hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-300 "
                 type="button"
-                onClick={console.log("upvote")}
+                onClick={console.log("()=>setCount()")}
               >
                 <img
                   id="upvote-icon"

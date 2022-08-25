@@ -4,7 +4,9 @@ function PostForm({ handleSubmit, setTitle, setPostBody }) {
 
   
   return (
+    <div>
     <form onSubmit={handleSubmit} className="mt-10 px-10">
+    <h1 className="mt-10 text-lg font-medium">Create A Post</h1>
       <label
         htmlFor="post_title"
         className="block text-sm font-medium text-gray-700"
@@ -40,6 +42,7 @@ function PostForm({ handleSubmit, setTitle, setPostBody }) {
         submit
       </button>
     </form>
+    </div>
   );
 }
 

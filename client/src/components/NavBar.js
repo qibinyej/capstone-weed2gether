@@ -27,7 +27,7 @@ function NavBar({ currentUser }) {
           <li>
             <Link to="/MyPage">My Page</Link>
           </li>
-        ) : null}
+        ) : <></>}
         <li className="split float-right">
           <Link to="/login">Login</Link>
         </li>

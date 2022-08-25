@@ -4,7 +4,7 @@ import Logout from "./Logout";
 import UserPost from "./UserPost";
 
 
-function MyPage({ updateUser, user, updatePost, posts, setPosts }) {
+function MyPage({ updateUser, user, updatePost, posts, setPosts, addNewPost, addNewPostHome }) {
   
   const [errors, setErrors] = useState(false);
   const [title, setTitle] = useState("");
@@ -42,9 +42,8 @@ const handleAddPost = (e)=>{
     })
       .then((r) => r.json())
       .then((data) => {
-        console.log(data.title);
-        // setTitle(data.title)
-        // setPostBody(data.postBody)
+        addNewPost(data)
+        addNewPostHome(data)
       });
   };
 
@@ -73,8 +72,7 @@ const handleAddPost = (e)=>{
       </h1>
       <Logout updateUser={updateUser} />
 
-      <h1 className="mt-4 text-center text-xl font-semibold">Create A Post</h1>
-
+      {/* <h1 className="mt-4 text-center text-xl font-medium">Create A Post</h1> */}
       <PostForm
         handleSubmit={handleSubmit}
         setTitle={setTitle}
