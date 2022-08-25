@@ -115,16 +115,16 @@ function Login({ setUser, updateUser}) {
                 />
                 <label
                   htmlFor="remember-me"
-                  className="ml-2 block text-sm text-gray-900"
+                  className="ml-2 block text-xs text-gray-900"
                 >
-                  Remember me
+                  Agree to Terms and Conditions
                 </label>
               </div>
 
               <div className="text-sm">
                 <a
                   href="/Signup"
-                  className="font-medium text-indigo-600 hover:text-indigo-500"
+                  className="text-xs font-medium text-indigo-600 hover:text-indigo-500"
                 >
                   {"Forgot your password?"}
                 </a>
@@ -134,7 +134,7 @@ function Login({ setUser, updateUser}) {
             <div>
               <button
                 type="submit"
-                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-black bg-yellow-600 hover:bg-indigo-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
                 Log in
               </button>
@@ -142,7 +142,7 @@ function Login({ setUser, updateUser}) {
           </form>
           {errors
             ? errors.map((e, index) => <div key={index}>{e[1]}</div>)
-            : null}
+            : <></>}
         </div>
       </div>
     </>

@@ -11,7 +11,7 @@ function PostForm({ handleSubmit, setTitle, setPostBody }) {
           onChange={(e) => setTitle(e.target.value)}
           type="text"
           placeholder="Title"
-          className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block sm:text-sm border border-gray-300 rounded-md"
+          className="shadow-sm w-96 focus:ring-indigo-500 focus:border-indigo-500 mt-1 block sm:text-sm border border-gray-300 rounded-md"
         />
       </label>
 

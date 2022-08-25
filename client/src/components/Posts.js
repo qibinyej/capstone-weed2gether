@@ -1,4 +1,3 @@
-import Articles from "./Articles";
 import { useState } from "react";
 import CommentCard from "./CommentCard";
 import CommentForm from "./CommentForm";
@@ -35,12 +34,12 @@ function Posts({
               </button>
             </div>
 
-            <CommentCard post={post} />
             <CommentForm
               post={post}
               user={user}
               handleAddComment={handleAddComment}
             />
+            <CommentCard post={post} />
           </div>
         );
       })}

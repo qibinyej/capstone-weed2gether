@@ -1,7 +1,6 @@
 import { React, useEffect, useState } from "react";
 import PostForm from "./PostForm";
 import Logout from "./Logout";
-
 import UserPost from "./UserPost";
 
 function MyPage({ updateUser, user, updatePost, posts, setPosts }) {

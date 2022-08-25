@@ -22,10 +22,10 @@ function Logout({ updateUser }) {
   };
 
   return (
-    <div>
+    <div className="float-right "> 
       <button
         onClick={handleLogout}
-        className="mt-5 bg-white border border-gray-400 rounded py-1 px-1 items-center justify-center text-sm font-sm text-black hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-300"
+        className=" bg-white border border-gray-400 rounded py-1 px-1 items-center justify-center text-sm font-sm text-black hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-300"
       >
         log out
       </button>
