@@ -42,7 +42,7 @@ function CommentForm({post, user, handleAddComment}) {
             placeholder="enter comment..."
           />
           <button
-            className="mt-4 float-right mr-9 bg-white border border-black rounded py-1 px-1 text-sm font-sm text-black hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-300"
+            className="mt-4 mr-10 float-right bg-white border border-black rounded py-1 px-1 text-sm font-sm text-black hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-300"
             type="submit"
           >
             send

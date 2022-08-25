@@ -1,6 +1,8 @@
 import React from "react";
 
 function PostForm({ handleSubmit, setTitle, setPostBody }) {
+
+  
   return (
     <form onSubmit={handleSubmit} className="mt-10 px-10">
       <label

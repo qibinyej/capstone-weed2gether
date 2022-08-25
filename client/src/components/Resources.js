@@ -11,7 +11,7 @@ function Resources({bills, laws}) {
         <h6 className="mt-1 text-center text-sm">(sorted by session year and  status)</h6>
       {
         bills.map((bill)=>{
-          return (<div className='mt-8 px-10 max-w-md mx-auto bg-white rounded-lg shadow-md md:max-w-2xl px-4 py-3'>
+          return (<div key={bill.id} className='mt-8 px-10 max-w-md mx-auto bg-white rounded-lg shadow-md md:max-w-2xl px-4 py-3'>
             <h1 className='text-base '><strong>{bill.result.title}</strong></h1>
             <h6><strong>Bill No.:</strong> {bill.result.basePrintNo}</h6>
             <h6><strong>Session:</strong> {bill.result.session}</h6>

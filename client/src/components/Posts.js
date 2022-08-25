@@ -16,9 +16,9 @@ function Posts({
       {postData.map((post) => {
         return (
           <div key={post.id} className="post-group">
-            <div className="post-container">
+            <div className="post-container-home">
               <p className="mt-3 indent-3 uppercase tracking-wide text-base text-indigo-600 font-bold">
-                Title: {post.title}
+                {post.title}
               </p>
               <p className="mt-4 indent-8 text-base">{post.post_body}</p>
               <button
@@ -33,7 +33,6 @@ function Posts({
                 {post.upvote}
               </button>
             </div>
-
             <CommentForm
               post={post}
               user={user}
@@ -42,7 +41,7 @@ function Posts({
             <CommentCard post={post} />
           </div>
         );
-      })}
+      })}ß
     </>
   );
 }
