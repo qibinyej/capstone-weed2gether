@@ -22,7 +22,5 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
-# weed2gether-updated
-# capstone-weed2gether
-# capstone-weed2gether
-# capstone-weed2gether
+
+
