@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import NavBar from "./components/NavBar";
@@ -135,7 +135,7 @@ function App() {
       <BrowserRouter>
         <NavBar user={user} currentUser={currentUser} />
 
-        <Switch>
+        <Routes>
           <Route path="/login">
             <Login updateUser={updateUser} setUser={setUser} user={user} />
           </Route>
@@ -171,7 +171,7 @@ function App() {
           <Route path="/Resources">
             <Resources user={user} bills={bills} />
           </Route>
-        </Switch>
+        </Routes>
       </BrowserRouter>
     </>
   );
