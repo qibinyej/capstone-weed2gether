@@ -1,8 +1,8 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Logout({ updateUser }) {
-  const history = useHistory();
+  const history = useNavigate();
 
   const handleLogout = (e) => {
     e.preventDefault();

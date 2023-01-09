@@ -1,11 +1,11 @@
 import { LockClosedIcon } from '@heroicons/react/solid'
 import { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 function Signup({ updateUser }) {
 
   const [errors, setErrors] = useState([])
-  const history = useHistory()
+  const history = useNavigate()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 

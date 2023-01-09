@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Login({ setUser, updateUser}) {
   const [username, setUsername] = useState({});
   const [password, setPassword] = useState({});
   const [errors, setErrors] = useState([]);
 
-  const history = useHistory();
+  const history = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
