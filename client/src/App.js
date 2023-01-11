@@ -7,7 +7,7 @@ import Posts from "./components/Posts";
 import Resources from "./components/Resources";
 import MyPage from "./components/MyPage";
 import Articles from "./components/Articles";
-import BgAnimate from "./components/BgAnimate";
+//import BgAnimate from "./components/BgAnimate";
 
 function App() {
   const [errors, setErrors] = useState([]);

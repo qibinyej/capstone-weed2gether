@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'main#home'
   resources :user_posts
   resources :comments
   resources :posts
