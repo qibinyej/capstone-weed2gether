@@ -1,11 +1,11 @@
 import { LockClosedIcon } from '@heroicons/react/solid'
 import { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 function Signup({ updateUser }) {
 
   const [errors, setErrors] = useState([])
-  const history = useHistory()
+  const history = useNavigate()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
@@ -24,7 +24,7 @@ function Signup({ updateUser }) {
       if(r.ok) {
         r.json().then(user=> {
           updateUser(user)
-          history.push(`/users/${user.id}`)
+          history(`/users/${user.id}`)
         })
       }else{
         r.json().then(setErrors(errors))

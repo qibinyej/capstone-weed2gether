@@ -1,8 +1,8 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Logout({ updateUser }) {
-  const history = useHistory();
+  const history = useNavigate();
 
   const handleLogout = (e) => {
     e.preventDefault();
@@ -14,7 +14,7 @@ function Logout({ updateUser }) {
         console.log("Logged out!");
         updateUser(res);
         // setDeletePost(res)
-        history.push("/posts");
+        history("/posts");
       } else {
         res.json().then(console.log("Try again... "));
       }

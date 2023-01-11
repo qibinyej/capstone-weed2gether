@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import NavBar from "./components/NavBar";
@@ -105,7 +105,7 @@ function App() {
   };
 
   // fetch news API
-  let newsUrl =
+/*  let newsUrl =
     "https://newsapi.org/v2/everything?q=marijuana&from=2022-08-01&sortBy=publishedAt&apiKey=cd6d486774f847cfba67743ef21b8658";
 
   useEffect(() => {
@@ -116,7 +116,7 @@ function App() {
         setArticles(data.articles);
       });
   }, []);
-
+*/
   //fetch NYS bills
 
   let billUrl =
@@ -132,15 +132,10 @@ function App() {
 
   return (
     <>
-      <BrowserRouter>
-        <NavBar user={user} currentUser={currentUser} />
-
-        <Switch>
-          <Route path="/login">
-            <Login updateUser={updateUser} setUser={setUser} user={user} />
-          </Route>
-          <Route path="/MyPage">
-            <MyPage
+    <NavBar user={user} currentUser={currentUser} />
+    <Routes>
+          <Route path="/login" element={<Login updateUser={updateUser} setUser={setUser} user={user} />} />
+          <Route path="/MyPage" element={<MyPage
             addNewPostHome={addNewPostHome}
             addNewPost={addNewPost}
               comments={comments}
@@ -151,28 +146,18 @@ function App() {
               updatePost={updatePost}
               posts={posts}
               setPosts={setPosts}
-            />
-          </Route>
-          <Route path="/signup">
-            <Signup updateUser={updateUser} user={user} currentUser={currentUser}/>
-          </Route>
-          <Route exact path="/Posts">
-            <Posts
-              postData={postData}
-              comments={comments}
-              user={user}
-              handleAddComment={handleAddComment}
-              posts={posts}
-            />
-          </Route>
-          <Route path="/Articles">
-            <Articles articleArr={articleArr} />
-          </Route>
-          <Route path="/Resources">
-            <Resources user={user} bills={bills} />
-          </Route>
-        </Switch>
-      </BrowserRouter>
+            />} />       
+          <Route path="/signup" element={<Signup updateUser={updateUser} user={user} currentUser={currentUser}/>} />
+          <Route exact path="/Posts" element={<Posts
+            postData={postData}
+            comments={comments}
+            user={user}
+            handleAddComment={handleAddComment}
+            posts={posts}
+          />} />
+          <Route path="/Articles" element={<Articles articleArr={articleArr} />} />
+          <Route path="/Resources" element={<Resources user={user} bills={bills} />} />
+        </Routes>    
     </>
   );
 }
